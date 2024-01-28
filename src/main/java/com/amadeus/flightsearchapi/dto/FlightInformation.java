@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class FlightInformationResponse {
-
-    FlightInformation flightInformation;
-
-    private long price;
+public class FlightInformation {
+    
+    private AirportInformationResponse departureAirport;
+    private AirportInformationResponse arrivalAirport;
+    private Date departureDate;
+    private Date arrivalDate;
 
 }

@@ -2,16 +2,21 @@ package com.amadeus.flightsearchapi.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.amadeus.flightsearchapi.dto.FlightInformation;
 import com.amadeus.flightsearchapi.dto.FlightInformationResponse;
+import com.amadeus.flightsearchapi.dto.FlightSearchRequest;
+import com.amadeus.flightsearchapi.dto.FlightSearchResponse;
 import com.amadeus.flightsearchapi.services.AirportService;
 import com.amadeus.flightsearchapi.services.FlightService;
 
-import java.util.List;
+import jakarta.validation.Valid;
+
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
@@ -19,22 +24,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FlightSearchController {
 
     private final FlightService flightService;
-    private final AirportService airportService;
     private final ModelMapper mapper;
 
     FlightSearchController(FlightService flightService, AirportService airportService, ModelMapper mapper) {
         this.flightService = flightService;
-        this.airportService = airportService;
         this.mapper = mapper;
     }
 
     @GetMapping
-    public ResponseEntity<List<FlightInformationResponse>> getAllAvailableFlights() {
+    public ResponseEntity<FlightSearchResponse> getAllAvailableFlights(
+            @Valid @RequestBody FlightSearchRequest flightSearchRequest) {
 
-        return ResponseEntity.ok(flightService.getAll()
-                .stream()
-                .map(v -> mapper.map(v, FlightInformationResponse.class))
-                .collect(Collectors.toList()));
+        FlightSearchResponse flightSearchResponse = new FlightSearchResponse();
+
+        flightSearchResponse.setFlightDeparture(
+                flightService
+                        .findFlights(mapper.map(flightSearchRequest, FlightInformation.class))
+                        .stream()
+                        .map(v -> mapper.map(v, FlightInformationResponse.class))
+                        .collect(Collectors.toList()));
+
+        if (flightSearchRequest.getReturnDate() != null)
+            flightSearchResponse.setFlightReturn(
+                    flightService.findFlights(
+                            FlightInformation.builder()
+                                    .arrivalAirport(flightSearchRequest.getDepartureAirportCity())
+                                    .departureAirport(flightSearchRequest.getArrivalAirportCity())
+                                    .departureDate(flightSearchRequest.getReturnDate())
+                                    .build())
+                    .stream()
+                    .map(v -> mapper.map(v, FlightInformationResponse.class))
+                    .collect(Collectors.toList()));
+
+        return ResponseEntity.ok(flightSearchResponse);
     }
 
 }

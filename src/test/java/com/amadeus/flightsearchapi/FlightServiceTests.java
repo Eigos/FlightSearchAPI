@@ -13,13 +13,14 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.amadeus.flightsearchapi.dto.AirportInformationResponse;
-import com.amadeus.flightsearchapi.dto.FlightInformation;
-import com.amadeus.flightsearchapi.models.Airport;
-import com.amadeus.flightsearchapi.models.Flight;
-import com.amadeus.flightsearchapi.repositories.IAirportRepository;
-import com.amadeus.flightsearchapi.repositories.IFlightRepository;
-import com.amadeus.flightsearchapi.services.FlightService;
+import com.amadeus.flightsearchapi.application.dto.AirportInformationResponse;
+import com.amadeus.flightsearchapi.application.dto.FlightInformation;
+import com.amadeus.flightsearchapi.application.models.Airport;
+import com.amadeus.flightsearchapi.application.models.Flight;
+import com.amadeus.flightsearchapi.application.repositories.IAirportRepository;
+import com.amadeus.flightsearchapi.application.repositories.IFlightRepository;
+import com.amadeus.flightsearchapi.application.services.FlightService;
+import com.amadeus.flightsearchapi.util.DateTimeUtils;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

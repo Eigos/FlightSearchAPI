@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.amadeus.flightsearchapi.auth.models.RefreshToken;
 import com.amadeus.flightsearchapi.auth.repositories.IRefreshTokenRepository;
 import com.amadeus.flightsearchapi.auth.security.jwt.JwtAccessTokenUtils;
-import com.amadeus.flightsearchapi.services.UserService;
 
 @Service
 public class JwtRefreshTokenService {

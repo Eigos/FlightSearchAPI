@@ -3,8 +3,6 @@ package com.amadeus.flightsearchapi.auth.models;
 import java.time.Instant;
 import java.util.UUID;
 
-import com.amadeus.flightsearchapi.models.User;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

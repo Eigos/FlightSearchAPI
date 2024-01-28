@@ -17,11 +17,9 @@ import com.amadeus.flightsearchapi.auth.exceptions.RefreshTokenNotFoundException
 import com.amadeus.flightsearchapi.auth.models.AccountStatus;
 import com.amadeus.flightsearchapi.auth.models.JwtLoginResult;
 import com.amadeus.flightsearchapi.auth.models.RefreshToken;
+import com.amadeus.flightsearchapi.auth.models.User;
+import com.amadeus.flightsearchapi.auth.repositories.IUserRepository;
 import com.amadeus.flightsearchapi.auth.security.jwt.JwtAccessTokenUtils;
-import com.amadeus.flightsearchapi.models.User;
-import com.amadeus.flightsearchapi.repositories.IUserRepository;
-import com.amadeus.flightsearchapi.services.UserDetailsImpl;
-import com.amadeus.flightsearchapi.services.UserService;
 
 @Service
 public class AuthService {

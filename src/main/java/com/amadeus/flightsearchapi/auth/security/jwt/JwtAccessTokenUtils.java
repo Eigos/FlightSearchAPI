@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.amadeus.flightsearchapi.services.UserDetailsImpl;
+import com.amadeus.flightsearchapi.auth.service.UserDetailsImpl;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;

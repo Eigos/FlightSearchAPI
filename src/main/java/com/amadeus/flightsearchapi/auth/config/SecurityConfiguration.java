@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.amadeus.flightsearchapi.auth.models.AccountStatus;
 import com.amadeus.flightsearchapi.auth.security.jwt.AuthEntryPointJwt;
 import com.amadeus.flightsearchapi.auth.security.jwt.AuthTokenFilter;
-import com.amadeus.flightsearchapi.services.UserDetailsServiceImpl;
+import com.amadeus.flightsearchapi.auth.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity

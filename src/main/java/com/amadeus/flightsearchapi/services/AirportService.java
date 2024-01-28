@@ -19,4 +19,8 @@ public class AirportService {
         return airportRepository.findAll();
     }
 
+    public boolean existsByCity(String city){
+        return airportRepository.existsByCity(city);
+    }
+
 }

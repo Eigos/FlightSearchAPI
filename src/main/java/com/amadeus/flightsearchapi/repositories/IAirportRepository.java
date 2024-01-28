@@ -8,5 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface IAirportRepository extends JpaRepository<Airport, UUID> {
-    
+    public boolean existsByCity(String city);
 }

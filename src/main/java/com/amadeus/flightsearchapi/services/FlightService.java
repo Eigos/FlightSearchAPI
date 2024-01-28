@@ -95,4 +95,8 @@ public class FlightService implements ICrudService<Flight> {
         flightRepository.deleteById(id);
     }
 
+    public void saveAll(Iterable<Flight> flights){
+        flightRepository.saveAll(flights);
+    }
+
 }

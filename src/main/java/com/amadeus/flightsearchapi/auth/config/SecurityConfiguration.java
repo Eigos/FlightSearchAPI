@@ -63,18 +63,10 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/api/v1/auth/**")
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/api/v1/auth/**", "/api/v1/flight/**")
                         .permitAll()
-                        .anyRequest()
-                        .authenticated())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/api/v1/flight/**")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/api/v1/admin/flight/**")
-                        .hasAuthority(AccountStatus.Admin.name())
-                        .anyRequest()
-                        .authenticated());
+                        .requestMatchers("/api/v1/admin/flight/**")
+                        .hasAuthority(AccountStatus.Admin.name()).anyRequest().denyAll());
 
         http.authenticationProvider(AuthenticationProvider());
 

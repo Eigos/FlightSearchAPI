@@ -36,7 +36,7 @@ public class FlightAdminController {
         return ResponseEntity.ok(flightService.getAll());
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<Flight> getFlight(@PathVariable("id") @NotNull UUID flightID){
         return ResponseEntity.ok(flightService.getByID(flightID).orElseThrow(FlightNotFoundException::new));
     }
